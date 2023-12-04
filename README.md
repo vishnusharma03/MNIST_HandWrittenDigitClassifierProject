@@ -46,12 +46,15 @@ A pre-trained model is provided as `model.pth`. To load it and make predictions:
    predicted_digit = output.argmax()
    ```
 
-   ## Files
-   - mnist-classification.ipynb: Jupyter notebook containing data loading, model training, evaluation, and model saving.
-   - model.py: Defines the neural network model architecture.
-   - model.pth: Saved state dict of the best-performing model.
-   - paste.txt: Original code contents pasted for the project.
-   - Feel free to reach out if any sections need more explanation or detail!
+## Files
+- mnist-classification.ipynb: Jupyter notebook containing data loading, model training, evaluation, and model saving.
+- mnist-classification.html: Replica of jupyter notebook in HTML format for easy access.
+- model.pth: Saved state dict of the best-performing model.
 
-
+## Libraries
+- Python
+- PyTorch
+- Torchvision
+- Matplotlib
+- Numpy
    
