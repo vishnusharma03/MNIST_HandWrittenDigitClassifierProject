@@ -27,3 +27,31 @@ A pre-trained model is provided as `model.pth`. To load it and make predictions:
    ```python
    import torch
    from model import Net
+   ```
+3. Load the saved model state dict:
+   ```python
+   model = Net()
+   model.load_state_dict(torch.load('model.pth'))
+   model.eval()
+   ```
+4. Preprocess the test image:
+   ```python
+   transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
+   img = transform(Image.open('test_digit.png'))
+    ```
+5. Pass the input tensor through the model to predict the digit:
+   ```python
+   with torch.no_grad():
+   output = model(img)
+   predicted_digit = output.argmax()
+   ```
+
+   ## Files
+   - mnist-classification.ipynb: Jupyter notebook containing data loading, model training, evaluation, and model saving.
+   - model.py: Defines the neural network model architecture.
+   - model.pth: Saved state dict of the best-performing model.
+   - paste.txt: Original code contents pasted for the project.
+   - Feel free to reach out if any sections need more explanation or detail!
+
+
+   
