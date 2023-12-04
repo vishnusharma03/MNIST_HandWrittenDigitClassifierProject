@@ -27,6 +27,7 @@ A pre-trained model is provided as `model.pth`. To load it and make predictions:
    ```python
    import torch
    from model import Net
+   from PIL import Image
    ```
 3. Load the saved model state dict:
    ```python
@@ -36,14 +37,28 @@ A pre-trained model is provided as `model.pth`. To load it and make predictions:
    ```
 4. Preprocess the test image:
    ```python
-   transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
-   img = transform(Image.open('test_digit.png'))
+   test_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))]) #transforms.Resize((784, 512)),
+   img = Image.open('91.jpg')
+   img = img.convert('L')
+   width, height = img.size
+   aspect_ratio = width / float(height)
+   resized_img = img.resize((28, 28), Image.Resampling.LANCZOS )
+   img_fi = test_transform(resized_img)
     ```
-5. Pass the input tensor through the model to predict the digit:
+5. Visulaze the image
+   ```python
+   img_np = torch.stack((imageOne,)).numpy()
+   img_np = img_np.squeeze()
+   plt.imshow(img_np, cmap='gray')
+   plt.axis('off')
+   plt.show()
+   ```
+6. Pass the input tensor through the model to predict the digit:
    ```python
    with torch.no_grad():
-   output = model(img)
-   predicted_digit = output.argmax()
+    output = inf(img_fi)
+    predicted_digit = output.argmax()
+    print("Predicted Digit: ", predicted_digit.item())
    ```
 
 ## Files
